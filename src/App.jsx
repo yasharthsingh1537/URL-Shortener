@@ -1,6 +1,6 @@
 function App() {
   return (
-    <div>App</div>
+    <div className="text-center text-6xl font-extrabold">URL Shortener</div>
   )
 }
 
