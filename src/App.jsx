@@ -1,12 +1,26 @@
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import AppLayout from './layouts/app-layout';
+import LandingPage from './pages/landing';
+import Dashboard from './pages/dashboard';
+import Auth from './pages/auth';
+import Link from './pages/link';
+import RedirectLink from './pages/redirect-link';
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      { path: '/', element: <LandingPage /> },
+      { path: '/dashboard', element: <Dashboard /> },
+      { path: '/auth', element: <Auth /> },
+      { path: '/link/:id', element: <Link /> },
+      { path: '/:id', element: <RedirectLink /> },
+    ],
+  },
+]);
+
 function App() {
-  return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="text-center text-6xl font-extrabold">URL Shortener</div>
-      <div className="text-center text-3xl font-extrabold">
-        The only url shortener that you will need!!!
-      </div>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
