@@ -20,6 +20,7 @@ function Login() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const longLink = searchParams.get('createNew');
+  const { fetchUser } = UrlState();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
