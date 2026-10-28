@@ -52,7 +52,7 @@ export function CreateLink() {
     loading,
     error,
     data,
-    fn: fnCreateUrl,
+    func: fnCreateUrl,
   } = useFetch(createUrl, { ...formValues, user_id: user.id });
 
   useEffect(() => {
@@ -74,9 +74,13 @@ export function CreateLink() {
     } catch (e) {
       const newErrors = {};
 
-      e?.inner?.forEach((err) => {
-        newErrors[err.path] = err.message;
-      });
+      if (e?.inner) {
+        e.inner.forEach((err) => {
+          newErrors[err.path] = err.message;
+        });
+      } else {
+        newErrors.message = e.message;
+      }
 
       setErrors(newErrors);
     }
@@ -121,7 +125,7 @@ export function CreateLink() {
             onChange={handleChange}
           />
         </div>
-        {error && <Error message={errors.message} />}
+        {error && <Error message={error.message} />}
         <DialogFooter className="sm:justify-start">
           <Button type="button" variant="destructive" onClick={createNewLink} disabled={loading}>
             {loading ? <BeatLoader size={10} color="white" /> : 'Create'}
