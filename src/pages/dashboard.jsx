@@ -11,17 +11,17 @@ import Error from '../components/error';
 import useFetch from '../hooks/use-fetch';
 
 import { getUrls } from '../api/apiUrls';
-import { getClicksForUrls } from '../api/apiUrls';
+import { getClicksForUrls } from '../api/apiClicks';
 import { UrlState } from '../context';
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { user } = UrlState();
-  const { loading, error, data: urls, fn: fnUrls } = useFetch(getUrls, user.id);
+  const { loading, error, data: urls, func: fnUrls } = useFetch(getUrls, user.id);
   const {
     loading: loadingClicks,
     data: clicks,
-    fn: fnClicks,
+    func: fnClicks,
   } = useFetch(
     getClicksForUrls,
     urls?.map((url) => url.id),

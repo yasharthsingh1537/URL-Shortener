@@ -1,4 +1,4 @@
-import supabase, { supabaseUrl } from '../lib/utils';
+import { supabase, supabaseUrl } from '../utils/supabase';
 
 export async function getUrls(user_id) {
   let { data, error } = await supabase.from('urls').select('*').eq('user_id', user_id);
